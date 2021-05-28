@@ -14,6 +14,7 @@ stream_handler.setLevel(logging.DEBUG)
 logger.addHandler(stream_handler)
 
 
+
 class DataProcessing:
     def __init__(self, lang, raw_embeddings, raw_sentences):
         self.lang = lang
