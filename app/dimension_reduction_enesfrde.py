@@ -380,15 +380,18 @@ def preprocess_data_decoding_layer():
 
 
 def preprocess_words_data():
-    en = WordEmbeddings('en', 'embeddings/embedding-en.json')
+    en = WordEmbeddings('en', 'embedding-en.json')
     en.load_data()
     en.load_umap_embeddings()
-    fr = WordEmbeddings('fr', 'embeddings/embedding-fr.json')
+    fr = WordEmbeddings('fr', 'embedding-fr.json')
     fr.load_data()
     fr.load_umap_embeddings()
-    es = WordEmbeddings('es', 'embeddings/embedding-es.json')
+    es = WordEmbeddings('es', 'embedding-es.json')
     es.load_data()
     es.load_umap_embeddings()
+    #de = WordEmbeddings('de', 'embedding-de.json')
+    #de.load_data()
+    #de.load_umap_embeddings()
 
     logger.info('Preparing output file for EN')
     prepare_output_file_words(en, 'data_words_en.json')
@@ -396,6 +399,8 @@ def preprocess_words_data():
     prepare_output_file_words(fr, 'data_words_fr.json')
     logger.info('Preparing output file for ES')
     prepare_output_file_words(es, 'data_words_es.json')
+    logger.info('Preparing output file for DE')
+    prepare_output_file_words(de, 'data_words_de.json')
 
 
 def matching_index_sentences(*sentence_embeddings):
@@ -487,28 +492,28 @@ def load_word_umap_embeddings(*embeddings):
 
 if __name__ == '__main__':
     logger.info('Loading german sentences')
-    de_sentences = SentenceEmbeddings('de', '../encodings-tied/basic/test.bpe.de',
-                                      '../encodings-tied/basic/encodings-tied-de.json')
+    de_sentences = SentenceEmbeddings('de', 'test.bpe.de',
+                                      '/home/usuaris/veu/julia.sanchez/baseline/interlingua-nodistance/enc-europarl/encodings-de.json')
     de_sentences.load_words()
     # de_sentences.load_umap_embeddings()
     logger.info('Loading english sentences')
-    en_sentences = SentenceEmbeddings('en', '../encodings-tied/basic/test.bpe.en',
-                                      '../encodings-tied/basic/encodings-tied-en.json')
+    en_sentences = SentenceEmbeddings('en', 'test.bpe.en',
+                                      '/home/usuaris/veu/julia.sanchez/baseline/interlingua-nodistance/enc-europarl/encodings-en.json')
     en_sentences.load_words()
     # en_sentences.load_umap_embeddings()
     logger.info('Loading spanish sentences')
-    es_sentences = SentenceEmbeddings('es', '../encodings-tied/basic/test.bpe.es',
-                                      '../encodings-tied/basic/encodings-tied-es.json')
+    es_sentences = SentenceEmbeddings('es', 'test.bpe.es',
+                                      '/home/usuaris/veu/julia.sanchez/baseline/interlingua-nodistance/enc-europarl/encodings-es.json')
     es_sentences.load_words()
     # es_sentences.load_umap_embeddings()
     logger.info('Loading french sentences')
-    fr_sentences = SentenceEmbeddings('fr', '../encodings-tied/basic/test.bpe.fr',
-                                      '../encodings-tied/basic/encodings-tied-fr.json')
+    fr_sentences = SentenceEmbeddings('fr', 'test.bpe.fr',
+                                      '/home/usuaris/veu/julia.sanchez/baseline/interlingua-nodistance/enc-europarl/encodings-fr.json')
     fr_sentences.load_words()
     # fr_sentences.load_umap_embeddings()
 
     # Compute common UMAP dimensionality reduction
-    umap_embeddings = load_umap_embeddings(de_sentences, en_sentences, es_sentences, fr_sentences, ru_sentences)
+    umap_embeddings = load_umap_embeddings(de_sentences, en_sentences, es_sentences, fr_sentences)
     de_sentences.set_umap_embeddings(list(zip(list(range(100)), umap_embeddings[:100])))
     en_sentences.set_umap_embeddings(list(zip(list(range(100)), umap_embeddings[100:200])))
     es_sentences.set_umap_embeddings(list(zip(list(range(100)), umap_embeddings[200:300])))
@@ -519,25 +524,25 @@ if __name__ == '__main__':
     es_sentences_data = es_sentences.asdict()
     fr_sentences_data = fr_sentences.asdict()
 
-    asjson(de_sentences_data, '../encodings-tied/basic/de_sentences_save.json')
-    asjson(en_sentences_data, '../encodings-tied/basic/en_sentences_save.json')
-    asjson(es_sentences_data, '../encodings-tied/basic/es_sentences_save.json')
-    asjson(fr_sentences_data, '../encodings-tied/basic/fr_sentences_save.json')
+    asjson(de_sentences_data, 'de_sentences_save.json')
+    asjson(en_sentences_data, 'en_sentences_save.json')
+    asjson(es_sentences_data, 'es_sentences_save.json')
+    asjson(fr_sentences_data, 'fr_sentences_save.json')
 
     logger.info('Loading german words')
-    de_words = WordEmbeddings('de', '../encodings-tied/basic/embedding-de.json')
+    de_words = WordEmbeddings('de', '/home/usuaris/veu/julia.sanchez/baseline/interlingua-nodistance/embedding-de.json')
     de_words.load_data()
 
     logger.info('Loading english words')
-    en_words = WordEmbeddings('en', '../encodings-tied/basic/embedding-en.json')
+    en_words = WordEmbeddings('en', '/home/usuaris/veu/julia.sanchez/baseline/interlingua-nodistance/embedding-en.json')
     en_words.load_data()
 
     logger.info('Loading spanish words')
-    es_words = WordEmbeddings('es', '../encodings-tied/basic/embedding-es.json')
+    es_words = WordEmbeddings('es', '/home/usuaris/veu/julia.sanchez/baseline/interlingua-nodistance/embedding-es.json')
     es_words.load_data()
 
     logger.info('Loading french words')
-    fr_words = WordEmbeddings('fr', '../encodings-tied/basic/embedding-fr.json')
+    fr_words = WordEmbeddings('fr', '/home/usuaris/veu/julia.sanchez/baseline/interlingua-nodistance/embedding-fr.json')
     fr_words.load_data()
 
     embeddings = load_word_umap_embeddings(de_words.embeddings,
@@ -554,18 +559,18 @@ if __name__ == '__main__':
     fr_words.set_umap_embeddings(embeddings[offset:offset + len(fr_words.embeddings)])
 
     de_words_data = de_words.asdict()
-    asjson(de_words_data, '../encodings-tied/basic/de_words_save.json')
+    asjson(de_words_data, 'de_words_save.json')
     en_words_data = en_words.asdict()
-    asjson(en_words_data, '../encodings-tied/basic/es_words_save.json')
+    asjson(en_words_data, 'es_words_save.json')
     es_words_data = es_words.asdict()
-    asjson(es_words_data, '../encodings-tied/basic/es_words_save.json')
+    asjson(es_words_data, 'es_words_save.json')
     fr_words_data = fr_words.asdict()
-    asjson(fr_words_data, '../encodings-tied/basic/fr_words_save.json')
+    asjson(fr_words_data, 'fr_words_save.json')
 
     matching_sentences = matching_index_sentences(de_sentences_data, en_sentences_data, es_sentences_data,
                                                   fr_sentences_data)
     map_sentences_to_words(matching_sentences,
-                           '../encodings-tied/basic/data_mapping_sentences_words.json',
+                           'data_mapping_sentences_words.json',
                            (de_sentences_data, de_words_data),
                            (en_sentences_data, en_words_data),
                            (es_sentences_data, es_words_data),
