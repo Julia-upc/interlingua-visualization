@@ -496,7 +496,6 @@ if __name__ == '__main__':
 
 
 '''
-
 import json
 import numpy as np
 import umap.umap_ as umap
@@ -612,7 +611,7 @@ class SentenceEmbeddings:
             encodings.append((int(index), embedding['encoding']))
 
         index, embedding = zip(*encodings)
-        embedding = [np.asarray(np.mean(vector, axis=1)).flatten() for vector in embedding]
+        embedding = [np.asarray(np.mean(vector, axis=2)).flatten() for vector in embedding]
 
         logger.info('Running UMAP')
         umap_embeddings = umap.UMAP(n_neighbors=10,
@@ -888,9 +887,9 @@ def preprocess_words_data():
     es = WordEmbeddings('es', 'embedding-es.json')
     es.load_data()
     es.load_umap_embeddings()
-    #de = WordEmbeddings('de', 'embedding-de.json')
-    #de.load_data()
-    #de.load_umap_embeddings()
+    # de = WordEmbeddings('de', 'embedding-de.json')
+    # de.load_data()
+    # de.load_umap_embeddings()
 
     logger.info('Preparing output file for EN')
     prepare_output_file_words(en, 'data_words_en.json')
@@ -967,7 +966,10 @@ def load_umap_embeddings(*embeddings):
             index += 1
 
     index, embedding = zip(*encodings)
-    embedding = [np.asarray(np.mean(vector, axis=1)).flatten() for vector in embedding]
+    embedding = [(np.mean(vector, axis=0)).flatten() for vector in embedding]
+
+    embedding = np.asarray(embedding)
+    print('Encodings', embedding.shape, embedding[1].shape, type(embedding))
 
     logger.info('Running UMAP')
     umap_embeddings = umap.UMAP(n_neighbors=10,
@@ -983,6 +985,9 @@ def load_word_umap_embeddings(*embeddings):
     for e in embeddings:
         encodings += e
 
+    encodings = np.asarray(encodings)
+    print('Encodings', encodings.shape)
+
     umap_embeddings = umap.UMAP(n_neighbors=10,
                                 min_dist=0.005,
                                 metric='correlation').fit_transform(encodings)
@@ -991,22 +996,26 @@ def load_word_umap_embeddings(*embeddings):
 
 if __name__ == '__main__':
     logger.info('Loading german sentences')
-    de_sentences = SentenceEmbeddings('de', '/home/usuaris/veu/julia.sanchez/baseline/interlingua-nodistance/sentences.bpe.de',
+    de_sentences = SentenceEmbeddings('de',
+                                      '/home/usuaris/veu/julia.sanchez/baseline/interlingua-nodistance/sentences.bpe.de',
                                       '/home/usuaris/veu/julia.sanchez/baseline/interlingua-nodistance/enc-europarl/encodings-de.json')
     de_sentences.load_words()
     # de_sentences.load_umap_embeddings()
     logger.info('Loading english sentences')
-    en_sentences = SentenceEmbeddings('en', '/home/usuaris/veu/julia.sanchez/baseline/interlingua-nodistance/sentences.bpe.en',
+    en_sentences = SentenceEmbeddings('en',
+                                      '/home/usuaris/veu/julia.sanchez/baseline/interlingua-nodistance/sentences.bpe.en',
                                       '/home/usuaris/veu/julia.sanchez/baseline/interlingua-nodistance/enc-europarl/encodings-en.json')
     en_sentences.load_words()
     # en_sentences.load_umap_embeddings()
     logger.info('Loading spanish sentences')
-    es_sentences = SentenceEmbeddings('es', '/home/usuaris/veu/julia.sanchez/baseline/interlingua-nodistance/sentences.bpe.es',
+    es_sentences = SentenceEmbeddings('es',
+                                      '/home/usuaris/veu/julia.sanchez/baseline/interlingua-nodistance/sentences.bpe.es',
                                       '/home/usuaris/veu/julia.sanchez/baseline/interlingua-nodistance/enc-europarl/encodings-es.json')
     es_sentences.load_words()
     # es_sentences.load_umap_embeddings()
     logger.info('Loading french sentences')
-    fr_sentences = SentenceEmbeddings('fr', '/home/usuaris/veu/julia.sanchez/baseline/interlingua-nodistance/sentences.bpe.fr',
+    fr_sentences = SentenceEmbeddings('fr',
+                                      '/home/usuaris/veu/julia.sanchez/baseline/interlingua-nodistance/sentences.bpe.fr',
                                       '/home/usuaris/veu/julia.sanchez/baseline/interlingua-nodistance/enc-europarl/encodings-fr.json')
     fr_sentences.load_words()
     # fr_sentences.load_umap_embeddings()
