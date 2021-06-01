@@ -492,22 +492,22 @@ def load_word_umap_embeddings(*embeddings):
 
 if __name__ == '__main__':
     logger.info('Loading german sentences')
-    de_sentences = SentenceEmbeddings('de', 'test.bpe.de',
+    de_sentences = SentenceEmbeddings('de', '/home/usuaris/veu/julia.sanchez/baseline/interlingua-nodistance/sentences.bpe.de',
                                       '/home/usuaris/veu/julia.sanchez/baseline/interlingua-nodistance/enc-europarl/encodings-de.json')
     de_sentences.load_words()
     # de_sentences.load_umap_embeddings()
     logger.info('Loading english sentences')
-    en_sentences = SentenceEmbeddings('en', 'test.bpe.en',
+    en_sentences = SentenceEmbeddings('en', '/home/usuaris/veu/julia.sanchez/baseline/interlingua-nodistance/sentences.bpe.en',
                                       '/home/usuaris/veu/julia.sanchez/baseline/interlingua-nodistance/enc-europarl/encodings-en.json')
     en_sentences.load_words()
     # en_sentences.load_umap_embeddings()
     logger.info('Loading spanish sentences')
-    es_sentences = SentenceEmbeddings('es', 'test.bpe.es',
+    es_sentences = SentenceEmbeddings('es', '/home/usuaris/veu/julia.sanchez/baseline/interlingua-nodistance/sentences.bpe.es',
                                       '/home/usuaris/veu/julia.sanchez/baseline/interlingua-nodistance/enc-europarl/encodings-es.json')
     es_sentences.load_words()
     # es_sentences.load_umap_embeddings()
     logger.info('Loading french sentences')
-    fr_sentences = SentenceEmbeddings('fr', 'test.bpe.fr',
+    fr_sentences = SentenceEmbeddings('fr', '/home/usuaris/veu/julia.sanchez/baseline/interlingua-nodistance/sentences.bpe.fr',
                                       '/home/usuaris/veu/julia.sanchez/baseline/interlingua-nodistance/enc-europarl/encodings-fr.json')
     fr_sentences.load_words()
     # fr_sentences.load_umap_embeddings()
