@@ -468,7 +468,7 @@ def load_umap_embeddings(*embeddings):
             index += 1
 
     index, embedding = zip(*encodings)
-    embedding = [np.asarray(np.mean(vector, axis=2)).flatten() for vector in embedding]
+    embedding = [np.asarray(np.mean(vector, axis=1)).flatten() for vector in embedding]
 
     logger.info('Running UMAP')
     umap_embeddings = umap.UMAP(n_neighbors=10,
