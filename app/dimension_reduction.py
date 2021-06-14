@@ -1069,7 +1069,7 @@ if __name__ == '__main__':
     de_words_data = de_words.asdict()
     asjson(de_words_data, 'de_words_save9.json')
     en_words_data = en_words.asdict()
-    asjson(en_words_data, 'es_words_save9.json')
+    asjson(en_words_data, 'en_words_save9.json')
     es_words_data = es_words.asdict()
     asjson(es_words_data, 'es_words_save9.json')
     fr_words_data = fr_words.asdict()
