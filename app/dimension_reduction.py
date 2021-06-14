@@ -997,26 +997,26 @@ def load_word_umap_embeddings(*embeddings):
 if __name__ == '__main__':
     logger.info('Loading german sentences')
     de_sentences = SentenceEmbeddings('de',
-                                      '/home/usuaris/veu/julia.sanchez/interlingua-nodistance/sentences.bpe9.de',
-                                      '/home/usuaris/veu/julia.sanchez/interlingua-nodistance/enc-europarl/encodings-de9.json')
+                                      '/home/usuaris/veu/julia.sanchez/interlingua-nodistance/sentences.bpe15.de',
+                                      '/home/usuaris/veu/julia.sanchez/interlingua-nodistance/enc-europarl/encodings-de15.json')
     de_sentences.load_words()
     # de_sentences.load_umap_embeddings()
     logger.info('Loading english sentences')
     en_sentences = SentenceEmbeddings('en',
-                                      '/home/usuaris/veu/julia.sanchez/interlingua-nodistance/sentences.bpe9.en',
-                                      '/home/usuaris/veu/julia.sanchez/interlingua-nodistance/enc-europarl/encodings-en9.json')
+                                      '/home/usuaris/veu/julia.sanchez/interlingua-nodistance/sentences.bpe15.en',
+                                      '/home/usuaris/veu/julia.sanchez/interlingua-nodistance/enc-europarl/encodings-en15.json')
     en_sentences.load_words()
     # en_sentences.load_umap_embeddings()
     logger.info('Loading spanish sentences')
     es_sentences = SentenceEmbeddings('es',
-                                      '/home/usuaris/veu/julia.sanchez/interlingua-nodistance/sentences.bpe9.es',
-                                      '/home/usuaris/veu/julia.sanchez/interlingua-nodistance/enc-europarl/encodings-es9.json')
+                                      '/home/usuaris/veu/julia.sanchez/interlingua-nodistance/sentences.bpe15.es',
+                                      '/home/usuaris/veu/julia.sanchez/interlingua-nodistance/enc-europarl/encodings-es15.json')
     es_sentences.load_words()
     # es_sentences.load_umap_embeddings()
     logger.info('Loading french sentences')
     fr_sentences = SentenceEmbeddings('fr',
-                                      '/home/usuaris/veu/julia.sanchez/interlingua-nodistance/sentences.bpe9.fr',
-                                      '/home/usuaris/veu/julia.sanchez/interlingua-nodistance/enc-europarl/encodings-fr9.json')
+                                      '/home/usuaris/veu/julia.sanchez/interlingua-nodistance/sentences.bpe15.fr',
+                                      '/home/usuaris/veu/julia.sanchez/interlingua-nodistance/enc-europarl/encodings-fr15.json')
     fr_sentences.load_words()
     # fr_sentences.load_umap_embeddings()
 
@@ -1032,25 +1032,25 @@ if __name__ == '__main__':
     es_sentences_data = es_sentences.asdict()
     fr_sentences_data = fr_sentences.asdict()
 
-    asjson(de_sentences_data, 'de_sentences_save9.json')
-    asjson(en_sentences_data, 'en_sentences_save9.json')
-    asjson(es_sentences_data, 'es_sentences_save9.json')
-    asjson(fr_sentences_data, 'fr_sentences_save9.json')
+    asjson(de_sentences_data, 'de_sentences_save15.json')
+    asjson(en_sentences_data, 'en_sentences_save15.json')
+    asjson(es_sentences_data, 'es_sentences_save15.json')
+    asjson(fr_sentences_data, 'fr_sentences_save15.json')
 
     logger.info('Loading german words')
-    de_words = WordEmbeddings('de', '/home/usuaris/veu/julia.sanchez/interlingua-nodistance/embedding-de9.json')
+    de_words = WordEmbeddings('de', '/home/usuaris/veu/julia.sanchez/interlingua-nodistance/embedding-de15.json')
     de_words.load_data()
 
     logger.info('Loading english words')
-    en_words = WordEmbeddings('en', '/home/usuaris/veu/julia.sanchez/interlingua-nodistance/embedding-en9.json')
+    en_words = WordEmbeddings('en', '/home/usuaris/veu/julia.sanchez/interlingua-nodistance/embedding-en15.json')
     en_words.load_data()
 
     logger.info('Loading spanish words')
-    es_words = WordEmbeddings('es', '/home/usuaris/veu/julia.sanchez/interlingua-nodistance/embedding-es9.json')
+    es_words = WordEmbeddings('es', '/home/usuaris/veu/julia.sanchez/interlingua-nodistance/embedding-es15.json')
     es_words.load_data()
 
     logger.info('Loading french words')
-    fr_words = WordEmbeddings('fr', '/home/usuaris/veu/julia.sanchez/interlingua-nodistance/embedding-fr9.json')
+    fr_words = WordEmbeddings('fr', '/home/usuaris/veu/julia.sanchez/interlingua-nodistance/embedding-fr15.json')
     fr_words.load_data()
 
     embeddings = load_word_umap_embeddings(de_words.embeddings,
@@ -1067,18 +1067,18 @@ if __name__ == '__main__':
     fr_words.set_umap_embeddings(embeddings[offset:offset + len(fr_words.embeddings)])
 
     de_words_data = de_words.asdict()
-    asjson(de_words_data, 'de_words_save9.json')
+    asjson(de_words_data, 'de_words_save15.json')
     en_words_data = en_words.asdict()
-    asjson(en_words_data, 'en_words_save9.json')
+    asjson(en_words_data, 'en_words_save15.json')
     es_words_data = es_words.asdict()
-    asjson(es_words_data, 'es_words_save9.json')
+    asjson(es_words_data, 'es_words_save15.json')
     fr_words_data = fr_words.asdict()
-    asjson(fr_words_data, 'fr_words_save9.json')
+    asjson(fr_words_data, 'fr_words_save15.json')
 
     matching_sentences = matching_index_sentences(de_sentences_data, en_sentences_data, es_sentences_data,
                                                   fr_sentences_data)
     map_sentences_to_words(matching_sentences,
-                           'data_mapping_sentences_words9.json',
+                           'data_mapping_sentences_words15.json',
                            (de_sentences_data, de_words_data),
                            (en_sentences_data, en_words_data),
                            (es_sentences_data, es_words_data),
