@@ -997,26 +997,26 @@ def load_word_umap_embeddings(*embeddings):
 if __name__ == '__main__':
     logger.info('Loading german sentences')
     de_sentences = SentenceEmbeddings('de',
-                                      '/home/usuaris/veu/julia.sanchez/baseline/interlingua-nodistance/sentences.bpe.de',
-                                      '/home/usuaris/veu/julia.sanchez/baseline/interlingua-nodistance/enc-europarl/encodings-de.json')
+                                      '/home/usuaris/veu/julia.sanchez/interlingua-nodistance/sentences.bpe9.de',
+                                      '/home/usuaris/veu/julia.sanchez/interlingua-nodistance/enc-europarl/encodings-de9.json')
     de_sentences.load_words()
     # de_sentences.load_umap_embeddings()
     logger.info('Loading english sentences')
     en_sentences = SentenceEmbeddings('en',
-                                      '/home/usuaris/veu/julia.sanchez/baseline/interlingua-nodistance/sentences.bpe.en',
-                                      '/home/usuaris/veu/julia.sanchez/baseline/interlingua-nodistance/enc-europarl/encodings-en.json')
+                                      '/home/usuaris/veu/julia.sanchez/interlingua-nodistance/sentences.bpe9.en',
+                                      '/home/usuaris/veu/julia.sanchez/interlingua-nodistance/enc-europarl/encodings-en9.json')
     en_sentences.load_words()
     # en_sentences.load_umap_embeddings()
     logger.info('Loading spanish sentences')
     es_sentences = SentenceEmbeddings('es',
-                                      '/home/usuaris/veu/julia.sanchez/baseline/interlingua-nodistance/sentences.bpe.es',
-                                      '/home/usuaris/veu/julia.sanchez/baseline/interlingua-nodistance/enc-europarl/encodings-es.json')
+                                      '/home/usuaris/veu/julia.sanchez/interlingua-nodistance/sentences.bpe9.es',
+                                      '/home/usuaris/veu/julia.sanchez/interlingua-nodistance/enc-europarl/encodings-es9.json')
     es_sentences.load_words()
     # es_sentences.load_umap_embeddings()
     logger.info('Loading french sentences')
     fr_sentences = SentenceEmbeddings('fr',
-                                      '/home/usuaris/veu/julia.sanchez/baseline/interlingua-nodistance/sentences.bpe.fr',
-                                      '/home/usuaris/veu/julia.sanchez/baseline/interlingua-nodistance/enc-europarl/encodings-fr.json')
+                                      '/home/usuaris/veu/julia.sanchez/interlingua-nodistance/sentences.bpe9.fr',
+                                      '/home/usuaris/veu/julia.sanchez/interlingua-nodistance/enc-europarl/encodings-fr9.json')
     fr_sentences.load_words()
     # fr_sentences.load_umap_embeddings()
 
@@ -1038,19 +1038,19 @@ if __name__ == '__main__':
     asjson(fr_sentences_data, 'fr_sentences_save.json')
 
     logger.info('Loading german words')
-    de_words = WordEmbeddings('de', '/home/usuaris/veu/julia.sanchez/baseline/interlingua-nodistance/embedding-de.json')
+    de_words = WordEmbeddings('de', '/home/usuaris/veu/julia.sanchez/interlingua-nodistance/embedding-de9.json')
     de_words.load_data()
 
     logger.info('Loading english words')
-    en_words = WordEmbeddings('en', '/home/usuaris/veu/julia.sanchez/baseline/interlingua-nodistance/embedding-en.json')
+    en_words = WordEmbeddings('en', '/home/usuaris/veu/julia.sanchez/interlingua-nodistance/embedding-en9.json')
     en_words.load_data()
 
     logger.info('Loading spanish words')
-    es_words = WordEmbeddings('es', '/home/usuaris/veu/julia.sanchez/baseline/interlingua-nodistance/embedding-es.json')
+    es_words = WordEmbeddings('es', '/home/usuaris/veu/julia.sanchez/interlingua-nodistance/embedding-es9.json')
     es_words.load_data()
 
     logger.info('Loading french words')
-    fr_words = WordEmbeddings('fr', '/home/usuaris/veu/julia.sanchez/baseline/interlingua-nodistance/embedding-fr.json')
+    fr_words = WordEmbeddings('fr', '/home/usuaris/veu/julia.sanchez/interlingua-nodistance/embedding-fr9.json')
     fr_words.load_data()
 
     embeddings = load_word_umap_embeddings(de_words.embeddings,
