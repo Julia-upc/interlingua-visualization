@@ -1032,10 +1032,10 @@ if __name__ == '__main__':
     es_sentences_data = es_sentences.asdict()
     fr_sentences_data = fr_sentences.asdict()
 
-    asjson(de_sentences_data, 'de_sentences_save.json')
-    asjson(en_sentences_data, 'en_sentences_save.json')
-    asjson(es_sentences_data, 'es_sentences_save.json')
-    asjson(fr_sentences_data, 'fr_sentences_save.json')
+    asjson(de_sentences_data, 'de_sentences_save9.json')
+    asjson(en_sentences_data, 'en_sentences_save9.json')
+    asjson(es_sentences_data, 'es_sentences_save9.json')
+    asjson(fr_sentences_data, 'fr_sentences_save9.json')
 
     logger.info('Loading german words')
     de_words = WordEmbeddings('de', '/home/usuaris/veu/julia.sanchez/interlingua-nodistance/embedding-de9.json')
@@ -1067,18 +1067,18 @@ if __name__ == '__main__':
     fr_words.set_umap_embeddings(embeddings[offset:offset + len(fr_words.embeddings)])
 
     de_words_data = de_words.asdict()
-    asjson(de_words_data, 'de_words_save.json')
+    asjson(de_words_data, 'de_words_save9.json')
     en_words_data = en_words.asdict()
-    asjson(en_words_data, 'es_words_save.json')
+    asjson(en_words_data, 'es_words_save9.json')
     es_words_data = es_words.asdict()
-    asjson(es_words_data, 'es_words_save.json')
+    asjson(es_words_data, 'es_words_save9.json')
     fr_words_data = fr_words.asdict()
-    asjson(fr_words_data, 'fr_words_save.json')
+    asjson(fr_words_data, 'fr_words_save9.json')
 
     matching_sentences = matching_index_sentences(de_sentences_data, en_sentences_data, es_sentences_data,
                                                   fr_sentences_data)
     map_sentences_to_words(matching_sentences,
-                           'data_mapping_sentences_words.json',
+                           'data_mapping_sentences_words9.json',
                            (de_sentences_data, de_words_data),
                            (en_sentences_data, en_words_data),
                            (es_sentences_data, es_words_data),
