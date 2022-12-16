@@ -5,7 +5,7 @@
 * Bokeh >= 1.0.4
 * Flask 1.0.3
 
-In order to run the website, you need to run the bokeh server first. 
+In order to run the website, you need to run the bokeh server first.  
 
 ## Step 1
 To run the app with the intermediate representations, first execute this command at the root of the repository : 
